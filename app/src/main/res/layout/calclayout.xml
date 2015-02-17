@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:shrinkColumns="*" android:stretchColumns="*">
+
+
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Parts:"
+            android:id="@+id/tvPamount"
+            android:layout_weight="2"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:ems="10"
+            android:maxLength="7"
+            android:maxWidth="7dp"
+            android:id="@+id/etPamount"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_weight="2"
+            android:id="@+id/tvPapplied"
+            android:layout_column="2" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Labor:"
+            android:id="@+id/tvLamount"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:ems="10"
+            android:maxLength="7"
+            android:maxWidth="7dp"
+            android:id="@+id/etLamount"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/tvLapplied"
+            android:layout_column="2" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discount:"
+            android:id="@+id/tvDamount"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:maxWidth="7dp"
+            android:maxLength="7"
+            android:id="@+id/etDamount"
+            android:layout_column="1" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:id="@+id/bCalc"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:id="@+id/bReset"
+            android:layout_column="2" />
+    </TableRow>
+</TableLayout>
