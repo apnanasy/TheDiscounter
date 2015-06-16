@@ -5,6 +5,37 @@
 
 
 
+
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Labor:"
+            android:id="@+id/tvLamount"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:ems="10"
+            android:maxLength="7"
+            android:maxWidth="7dp"
+            android:id="@+id/etLamount"
+            android:layout_column="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/tvLapplied"
+            android:layout_column="2" />
+    </TableRow>
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -34,36 +65,6 @@
             android:text=""
             android:layout_weight="2"
             android:id="@+id/tvPapplied"
-            android:layout_column="2" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Labor:"
-            android:id="@+id/tvLamount"
-            android:layout_column="0" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"
-            android:ems="10"
-            android:maxLength="7"
-            android:maxWidth="7dp"
-            android:id="@+id/etLamount"
-            android:layout_column="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/tvLapplied"
             android:layout_column="2" />
     </TableRow>
 
