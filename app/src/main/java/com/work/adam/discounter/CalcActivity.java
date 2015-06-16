@@ -72,8 +72,8 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         EditText et = new EditText(this);
         et.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         et.setEms(10);
-        et.setInputType(InputType.TYPE_CLASS_PHONE);
-        //et.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+       // et.setInputType(InputType.TYPE_CLASS_PHONE);
+        et.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         et.setOnFocusChangeListener(this);
         et.setId(counter);
         TextView tv2 = new TextView(this);
