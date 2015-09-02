@@ -37,8 +37,7 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
     private Double parts;
     private Double labor;
     private Double discount;
-    private int counter;
-    private List<Double> items;
+
 
 
     @Override
@@ -55,8 +54,6 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         tbChoice = (ToggleButton) findViewById(R.id.tbChoice);
         scrollview = (ScrollView) findViewById(R.id.scrollView);
         scrollLayout = (LinearLayout) findViewById(R.id.scrollLayout);
-        items = new ArrayList<Double>();
-        counter = 1;
         createLine();
         bCalc.setOnClickListener(this);
         bReset.setOnClickListener(this);
@@ -68,14 +65,13 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         ll.setOrientation(LinearLayout.HORIZONTAL);
         TextView tv = new TextView(this);
         tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT,2f));
-        tv.setText("Line " + counter + ":");
+        tv.setText("Line " + scrollLayout.getChildCount()+":");
         EditText et = new EditText(this);
         et.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT,1f));
         et.setEms(10);
-       // et.setInputType(InputType.TYPE_CLASS_PHONE);
         et.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         et.setOnFocusChangeListener(this);
-        et.setId(counter);
+        et.setId(scrollLayout.getChildCount() + 1);
         TextView tv2 = new TextView(this);
         tv2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT,2f));
         tv2.setText("");
@@ -103,8 +99,7 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus == true) {
-            if(v.getId() == counter){
-                counter += 1;
+            if(v.getId() == scrollLayout.getChildCount()){
                 createLine();
             }
         }
@@ -138,15 +133,10 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
             return false;
         }
         try {
-            for (int c = 0;c < counter;c += 1) {
+            for (int c = 0;c < scrollLayout.getChildCount();c += 1) {
                 LinearLayout ll = (LinearLayout) scrollLayout.getChildAt(c);
                 EditText et = (EditText) ll.getChildAt(1);
                  String hello = et.getText().toString();
-                if (!et.getText().toString().equals("") ) {
-                    items.add(Double.parseDouble(et.getText().toString()));
-                    //TextView tv = (TextView) ll.getChildAt(2);
-                    //tv.setText(items.get(items.size() - 1).toString());
-                }
             }
         } catch (IllegalArgumentException e) {
             return false;
@@ -167,19 +157,24 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
             papplied = parts / total * discount;
             tvPapplied.setText(Double.valueOf(df.format(papplied)).toString());
         }
-        for(int x = 0;x < items.size();x++) {
-            Double item = items.get(x);
-            Double applied;
-            if(tbChoice.isChecked() == true) {
-                applied = item / parts * papplied;
-            } else {
-                applied = item / labor * lapplied;
-            }
-            LinearLayout ll = (LinearLayout)scrollLayout.getChildAt(x);
-            TextView tv = (TextView)ll.getChildAt(2);
-            tv.setText(Double.valueOf(df.format(applied)).toString());
-        }
+        for(int x = 0;x < scrollLayout.getChildCount();x++) {
+            LinearLayout ll = (LinearLayout) scrollLayout.getChildAt(x);
+            EditText et = (EditText) ll.getChildAt(1);
 
+            TextView tv = (TextView) ll.getChildAt(2);
+            if (!et.getText().toString().equals("")) {
+                Double item = Double.parseDouble(et.getText().toString());
+
+                Double applied;
+                if (tbChoice.isChecked() == true) {
+                    applied = item / parts * papplied;
+                } else {
+                    applied = item / labor * lapplied;
+                }
+                tv.setText(Double.valueOf(df.format(applied)).toString());
+            } else { tv.setText("");}
+
+        }
     }
 
     public void reset() {
@@ -192,8 +187,6 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         parts = 0.0;
         labor = 0.0;
         discount = 0.0;
-        items.clear();
-        counter = 1;
         createLine();
     }
 }
