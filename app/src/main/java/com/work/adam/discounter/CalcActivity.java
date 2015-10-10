@@ -21,25 +21,30 @@ import java.util.List;
 
 /**
  * Created by adam on 2/14/2015.
+ *
+ * This is the main activity for the discounter
  */
 public class CalcActivity extends Activity implements View.OnClickListener, View.OnFocusChangeListener {
 
-    private EditText etPamount;
-    private EditText etLamount;
-    private EditText etDamount;
-    private TextView tvPapplied;
-    private TextView tvLapplied;
-    private Button bCalc;
-    private Button bReset;
-    private ToggleButton tbChoice;
-    private ScrollView scrollview;
-    private LinearLayout scrollLayout;
-    private Double parts;
-    private Double labor;
-    private Double discount;
+    private EditText etPamount; // User entered parts amount
+    private EditText etLamount; // User entered labor amount
+    private EditText etDamount; // User entered discount amount
+    private TextView tvPapplied; // Displayed discount applied to parts
+    private TextView tvLapplied; // Displayed discount applied to labor
+    private Button bCalc; // Button to calculate applied discount
+    private Button bReset; // Button to reset all entered information
+    private ToggleButton tbChoice; // Toggle to use parts or labor
+    private ScrollView scrollview; // View to display line items
+    private LinearLayout scrollLayout; // Layout to organize line items
+    private Double parts; // Parts amount used for calculation
+    private Double labor; // Labor amount used for calculation
+    private Double discount; // discount amount used for calculation
 
 
-
+    /**
+     * Constructor linking to the UI
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +59,14 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         tbChoice = (ToggleButton) findViewById(R.id.tbChoice);
         scrollview = (ScrollView) findViewById(R.id.scrollView);
         scrollLayout = (LinearLayout) findViewById(R.id.scrollLayout);
-        createLine();
+        createLine(); // Create the first line in the scrollview
         bCalc.setOnClickListener(this);
         bReset.setOnClickListener(this);
     }
 
-
+    /**
+     * This function creates a new line for user input
+     */
     public void createLine() {
         LinearLayout ll = new LinearLayout(getApplicationContext());
         ll.setOrientation(LinearLayout.HORIZONTAL);
@@ -96,6 +103,11 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         }
     }
 
+    /**
+     * This function calls create line whenever the user clicks on the bottom line item
+     * @param v
+     * @param hasFocus
+     */
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus == true) {
@@ -105,6 +117,10 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         }
     }
 
+    /**
+     * This function tests user input and puts in memory if usable
+     * @return true if user input usable
+     */
     public boolean setInput() {
         Context context = getApplicationContext();
         try {
@@ -144,6 +160,9 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         return true;
     }
 
+    /**
+     * Perfoms all calculations and pust them to the UI
+     */
     public void calculate(){
         double total = parts + labor;
         DecimalFormat df = new DecimalFormat("#.##");
@@ -177,6 +196,9 @@ public class CalcActivity extends Activity implements View.OnClickListener, View
         }
     }
 
+    /**
+     * Sets everything back to when app was started
+     */
     public void reset() {
         etPamount.setText("");
         etLamount.setText("");
